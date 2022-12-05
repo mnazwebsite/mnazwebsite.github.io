@@ -1,41 +1,201 @@
-<!DOCTYPE html>
+                        
+<!-- saved from url=(0075)file:///D:/Capability%20%2B%20Personal/my_ecommerce_website/Untitled-3.html -->
+
+<!-- To check how to use in mobile and in desktop
+        Desktop - stack in on row, margin left and right how many px?
+        Mobile - one columns, give 10px right and lefht
+-->
+
 <html>
     <head>
-        <style>
-            div {
-            width: 40%;
-            padding: 20px;
-            display: inline-block;
-            }
-            
-        </style>
-    </head>
-    <body>
-        <!--Box to place the code editor - DONE-->
-        <!--Enter or refresh button - DONE-->
-        <!--Iframe to show the result from code editor <iframe srcdoc = ""- DONE-->
-        <!--Beautify the textarea to tab as per pasted-->
-        <!--Put the iframe beside the textarea-->
-        <!--Save the textarea to github?-->
-        <h1>Test Your Website Code Side By Side Using Vanilla HTML, CSS, JS</h1>
+        <!-- Option 1: Include in HTML -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <style>
+        body{
+            font-family: "SF Pro Text","Myriad Set Pro","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
+            margin:5px;
+        }
+        #navbar{
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 9999;
+            display: block;
+            margin: 0;
+            width: 100%;
+            min-width: 1024px;
+            height: 48px;
+            max-height: 44px;
+            background: rgba(0,0,0,0.92);
+            font-size: 30px;
+            color:white;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        .header{
+            font-size: 20px;
+            line-height: 1.08349;
+            font-weight: 600;
+            letter-spacing: -.003em;
+            font-family: SF Pro Display,SF Pro Icons,AOS Icons,Helvetica Neue,Helvetica,Arial,sans-serif;
+            display: block;
+            top : 25px;
+            position:relative;
+        }
+        .item_1{
+            width: 250px;
+            margin: auto;
+            border: 3px solid black;
+            justify-content:space-evenly;
+            text-align:center;
+	    margin-right:10px;
+            margin-top:10px;
+        }
         
-        <div class = "Code_Editor">
-            <textarea style = "display:block; width: 472px; height: 544px; resize: none;font-size: 9px;"  id = "textarea1" onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}">
-            </textarea>
-            <button onclick = "transfer_to_iframe()" style = "display:block" >
-                Submit button
-            </button>
+        .Item_List{
+  		/*border: 5px solid;*/
+  		margin: auto;
+		margin-left:5px;
+		margin-right:5px;
+  		width: 100%;
+  		padding: 10px;
+		}
+        /*
+        .item_1:hover{
+         
+         height: 40%;
+         }
+         */
+         img {
+            width: 200px;
+            height: 300px;
+            object-fit: cover;
+                }
+        .logo {
+            height: 30px;
+            width: 30px;
+            object-fit: cover;
+            margin-top: 5px;
+            margin-left: 10px;
+        }
+    </style>
+    
+</head>
+<body>
+    <nav id="navbar">
+	<img class = 'logo' src = "image/MNAZ.gif" style=" style = "height: 30px; display:inline-block;margin-top:10px;" >
+    </nav>
+    <div class="header" style="margin-left:auto;margin-right:auto;">
+        <h1 style="display: inline-block;">Shop! </h1>
+        <div class="subheader" style="color:grey;display: inline-block;">The best Way To Buy Products.</div>
+    </div>
+    <div class = "faq_line" style="margin:center;text-align:center;display:block;position:relative;">
+        <p> Test1</p>
+        <p> Test2</p>
+        <p> Test3</p>
+    </div>
+    <div class = "Item_List">
+
+        <div class = "Line_1" style="-webkit-flex-flow: wrap row;flex-flow: row wrap;margin-right:10px;">
+            
+<div class = "item_1" style="display:inline-block;" onClick = "clickhere(this)">
+                <p>ITEM 1</p>
+                <img src="image/book1/main.JPG">
+                <p class = "description" style = "display:none">ITEM DESCRIPTION</p>
+                <p style = "font-size: 200%;">ITEM PRICE</p>
+		<div class = "icons">
+			<button class="bi bi-arrows-angle-expand"></button>
+			<button style = "color:white;background:green;" class="bi bi-whatsapp"></button>
+            </div>
         </div>
-        <div class="iframe_area" >
-            <iframe id = "iframe_result" style = "width:650px;height:550px"></iframe>
+		
+		<div class = "item_1" style="display:inline-block;" onClick = "clickhere(this)">
+                <p>ITEM 1</p>
+                <img src="image/book2/main.JPG">
+                <p class = "description" style = "display:none">ITEM DESCRIPTION</p>
+                <p style = "font-size: 200%;">ITEM PRICE</p>
+		<div class = "icons">
+			<button class="bi bi-arrows-angle-expand"></button>
+			<button style = "color:white;background:green;" class="bi bi-whatsapp"></button>
+            </div>
         </div>
-        <script>
-            function transfer_to_iframe(){
-                
-                var result  = document.getElementById('textarea1').value
-                console.log(result)
-                document.getElementsByTagName('iframe')[0].setAttribute("srcdoc",  result);
-            }
-        </script>
-    </body>
-</html>
+            
+		<div class = "item_1" style="display:inline-block;" onClick = "clickhere(this)">
+                <p>ITEM 1</p>
+                <img src="image/book3/main.JPG">
+                <p class = "description" style = "display:none">ITEM DESCRIPTION</p>
+                <p style = "font-size: 200%;">ITEM PRICE</p>
+		<div class = "icons">
+			<button class="bi bi-arrows-angle-expand"></button>
+			<button style = "color:white;background:green;" class="bi bi-whatsapp"></button>
+            </div>
+        </div>
+            
+		<div class = "item_1" style="display:inline-block;" onClick = "clickhere(this)">
+                <p>ITEM 1</p>
+                <img src="image/book4/main.JPG">
+                <p class = "description" style = "display:none">ITEM DESCRIPTION</p>
+                <p style = "font-size: 200%;">ITEM PRICE</p>
+		<div class = "icons">
+			<button class="bi bi-arrows-angle-expand"></button>
+			<button style = "color:white;background:green;" class="bi bi-whatsapp"></button>
+            </div>
+        </div>
+    
+
+    </div>
+
+<script>
+    var viewport_width = window.outerWidth;
+    all_div = document.getElementsByClassName("item_1");
+   for (let i = 0; i < all_div.length; i++)
+		{
+		console.log(i)
+		var width_new = viewport_width /1;
+		all_div[i].style.width= width_new.toString().concat("px");
+		console.log(all_div[i].style.width);
+		}
+    function clickhere(x){
+	all_div = document.getElementsByClassName("item_1");
+	/*console.log(all_div[0]);*/
+	for (let i = 0; i < all_div.length; i++)
+		{
+		console.log(i);
+		console.log(all_div[i]);
+		if (x != all_div[i]){
+			console.log(all_div[i])
+			all_div[i].style.display = "none";
+			}
+		}
+
+	on_or_of = x.getElementsByClassName('description')[0].style.display;
+	if	 (on_or_of == 'none'){
+		x.getElementsByClassName('description')[0].style.display = 'block';
+		
+		x.style.width = "100%";
+		x.style.fontSize = "150%";
+	}	
+	else{
+		x.getElementsByClassName('description')[0].style.display = 'none';
+		x.style.width = width_new.toString().concat("px");
+		
+		x.style.fontSize = "100%";
+		for (let i = 0; i < all_div.length; i++)
+		{
+		all_div[i].style.display = "inline-block";
+		}
+	}
+	
+	
+	}
+	
+
+</script>
+
+</body>
+</html>            
