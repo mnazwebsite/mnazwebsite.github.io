@@ -29,7 +29,7 @@
             width: 100%;
             min-width: 1024px;
             min-height: 60px;
-            max-height: 80px;
+            max-height: 60px;
             background: rgba(0,0,0,0.92);
             font-size: 30px;
             color:white;
@@ -48,25 +48,19 @@
             display: block;
             top : 25px;
             position:relative;
+            margin-bottom:2%;
         }
         .item_1{
-            width: 100%;
+            
             margin: auto;
-            border: 3px solid black;
+            margin-bottom:2%;
+            border: 0.5px dashed grey;
             justify-content:space-evenly;
             text-align:center;
-	    margin-right:10px;
-            margin-top:10px;
+
         }
         
-        .Item_List{
-  		/*border: 5px solid;*/
-  		margin: auto;
-		margin-left:5px;
-		margin-right:5px;
-  		width: 100%;
-  		padding: 10px;
-		}
+
         /*
         .item_1:hover{
          
@@ -79,88 +73,144 @@
             object-fit: cover;
                 }
         .logo {
-            height: 50px;
-            width: 50px;
+            height:40px;
+            width: 40px;
             object-fit: cover;
-            margin-top: 5px;
+            margin-top: 10px;
             margin-left: 10px;
+            display: inline-block;
+        }
+        .Contact {
+            font-family: SF Pro Display,SF Pro Icons,AOS Icons,Helvetica Neue,Helvetica,Arial,sans-serif;
+            font-size: 20px;
+            line-height: 1.08349;
+            font-weight: 600;
+            letter-spacing: -.003em;
+            color:black;
+            margin-left:70%;margin-right:10%;
+            display:block;
+        }
+        .faq {
+            font-family: SF Pro Display,SF Pro Icons,AOS Icons,Helvetica Neue,Helvetica,Arial,sans-serif;
+            font-size: 16px;
+            line-height: 1.08349;
+            
+            letter-spacing: -.003em;
+            color:black;
+           
+            display:block;
+        }
+        /* Create two equal columns that floats next to each other */
+        .faq_contact_column {
+        float: left;
+        width: 50%;
+        }
+
+        /* Clear floats after the columns */
+        .faq_contact_row:after {
+        content: "";
+        display: table;
+        clear: both;
+        margin-bottom:2%;
+        }
+        .item_header{
+            font-family: SF Pro Display,SF Pro Icons,AOS Icons,Helvetica Neue,Helvetica,Arial,sans-serif;
+            font-size: 24px;
+        }
+        footer{
+            font-size: 16px;
+            line-height: 1.08349;
+            letter-spacing: -.003em;
+            display: block;
+            background: rgba(0,0,0,0.92);
+            font-size: 16px;
+            color:white;
+
         }
     </style>
     
 </head>
 <body>
     <nav id="navbar">
-	<img class = 'logo' src = "image/MNAZ.gif" style=" style = "height: 30px; display:inline-block;margin-top:10px;" >
+	    <img class = 'logo' src = "image/MNAZ.gif">
     </nav>
     <div class="header" style="margin-left:auto;margin-right:auto;">
-        <h1 style="display: inline-block;">Shop! </h1>
-        <div class="subheader" style="color:grey;display: inline-block;">The best Way To Buy Products.</div>
-    </div>
-    <div class = "faq_line" style="margin:center;text-align:center;display:block;position:relative;">
-        <p> Test1</p>
-        <p> Test2</p>
-        <p> Test3</p>
-    </div>
-    <div class = "Item_List">
+        <h1 style="display: inline-block;">ARiF SHOP! </h1>
+        <div class="subheader" style="color:grey;display: inline-block;">Buy Stylus Pencil For iPad & Used Book Easily Here!</div>
 
-        <div class = "Line_1" style="-webkit-flex-flow: wrap row;flex-flow: row wrap;margin-right:10px;">
-            
-<div class = "item_1" style="display:inline-block;" onClick = "clickhere(this)">
-                <p>ITEM 1</p>
-                <img src="image/book1/main.JPG">
-                <p class = "description" style = "display:none">ITEM DESCRIPTION</p>
-                <p style = "font-size: 200%;">ITEM PRICE</p>
-		<div class = "icons">
-			<button class="bi bi-arrows-angle-expand"></button>
-			<button style = "color:white;background:green;" class="bi bi-whatsapp"></button>
+    </div>
+    <div class = "faq_contact_row">
+        <div class = "faq_contact_column" style="margin:center;text-align:left;display:block;">
+            <div class = "faq">
+                <li> <b>RM 5</b> Nett Postage Fee to Semenanjung for Non Dropship items </li>
+                <li> <b>Surely Works!</b> guarentee for Stylus/Pencil for Apple iPad</li>
+                <li> <b>100% Refund</b> guarentee for broken/missing items</li>
             </div>
         </div>
+        <div class = "faq_contact_column">
+            <a class = "Contact" href="" target="_blank">
+                Ask Me Anything!
+            </a>
+        </div>
+    </div>
+
+
+
+    <div class = "item_1" style="display:inline-block;" onClick = "clickhere(this)">
+            <p class = "item_header" >ITEM 1</p>
+            <img src="image/book1/main.JPG">
+            <p class = "description" style = "display:none">ITEM DESCRIPTION</p>
+            <p style = "font-size: 200%;">ITEM PRICE</p>
+    <div class = "icons">
+        <button class="bi bi-arrows-angle-expand"></button>
+        <button style = "color:white;background:green;" class="bi bi-whatsapp"></button>
+        </div>
+    </div>
 		
-		<div class = "item_1" style="display:inline-block;" onClick = "clickhere(this)">
-                <p>ITEM 1</p>
-                <img src="image/book2/main.JPG">
-                <p class = "description" style = "display:none">ITEM DESCRIPTION</p>
-                <p style = "font-size: 200%;">ITEM PRICE</p>
-		<div class = "icons">
-			<button class="bi bi-arrows-angle-expand"></button>
-			<button style = "color:white;background:green;" class="bi bi-whatsapp"></button>
-            </div>
+    <div class = "item_1" style="display:inline-block;" onClick = "clickhere(this)">
+            <p class = "item_header" >ITEM 1</p>
+            <img src="image/book2/main.JPG">
+            <p class = "description" style = "display:none">ITEM DESCRIPTION</p>
+            <p style = "font-size: 200%;">ITEM PRICE</p>
+    <div class = "icons">
+        <button class="bi bi-arrows-angle-expand"></button>
+        <button style = "color:white;background:green;" class="bi bi-whatsapp"></button>
         </div>
+    </div>
             
-		<div class = "item_1" style="display:inline-block;" onClick = "clickhere(this)">
-                <p>ITEM 1</p>
-                <img src="image/book3/main.JPG">
-                <p class = "description" style = "display:none">ITEM DESCRIPTION</p>
-                <p style = "font-size: 200%;">ITEM PRICE</p>
-		<div class = "icons">
-			<button class="bi bi-arrows-angle-expand"></button>
-			<button style = "color:white;background:green;" class="bi bi-whatsapp"></button>
-            </div>
+    <div class = "item_1" style="display:inline-block;" onClick = "clickhere(this)">
+            <p class = "item_header" >ITEM 1</p>
+            <img src="image/book3/main.JPG">
+            <p class = "description" style = "display:none">ITEM DESCRIPTION</p>
+            <p style = "font-size: 200%;">ITEM PRICE</p>
+    <div class = "icons">
+        <button class="bi bi-arrows-angle-expand"></button>
+        <button style = "color:white;background:green;" class="bi bi-whatsapp"></button>
         </div>
+    </div>
             
-		<div class = "item_1" style="display:inline-block;" onClick = "clickhere(this)">
-                <p>ITEM 1</p>
-                <img src="image/book4/main.JPG">
-                <p class = "description" style = "display:none">ITEM DESCRIPTION</p>
-                <p style = "font-size: 200%;">ITEM PRICE</p>
-		<div class = "icons">
-			<button class="bi bi-arrows-angle-expand"></button>
-			<button style = "color:white;background:green;" class="bi bi-whatsapp"></button>
-            </div>
+    <div class = "item_1" style="display:inline-block;" onClick = "clickhere(this)">
+            <p class = "item_header" >ITEM 1</p>
+            <img src="image/book4/main.JPG">
+            <p class = "description" style = "display:none">ITEM DESCRIPTION</p>
+            <p style = "font-size: 200%;">ITEM PRICE</p>
+    <div class = "icons">
+        <button class="bi bi-arrows-angle-expand"></button>
+        <button style = "color:white;background:green;" class="bi bi-whatsapp"></button>
         </div>
+    </div>
+
     
 
-    </div>
-
 <script>
-    var viewport_width = window.outerWidth;
+    var viewport_width = window.innerWidth;
+    console.log(viewport_width);
     all_div = document.getElementsByClassName("item_1");
    for (let i = 0; i < all_div.length; i++)
 		{
-		console.log(i)
-		var width_new = viewport_width /1;
+		var width_new = viewport_width /4;
 		all_div[i].style.width= width_new.toString().concat("px");
-		console.log(all_div[i].style.width);
+		/*console.log(all_div[i].style.width);*/
 		}
     function clickhere(x){
 	all_div = document.getElementsByClassName("item_1");
@@ -195,9 +245,19 @@
 	
 	
 	}
-	
-
 </script>
-
 </body>
+
+<footer class = "footer">
+    <p>Created By M Nur Arif Zanuri</p>
+    <div>
+        <a style="color:lightgrey;text-decoration: none" href="mailto:muhammadnurarif.zanuri@gmail.com" target="_blank">Email Me : muhammadnurarif.zanuri@gmail.com</a>
+    </div>
+    <div>
+        <a style="color:lightgrey;text-decoration: none" href="https://www.linkedin.com/in/muhammad-nur-arif-zanuri-a54097188/" target="_blank">Follow Me in linkedin</a>
+    </div>
+    <div>
+        <a style="color:lightgrey;text-decoration: none" href="" target="_blank">Follow Me in twitter</a>
+    </div>
+</footer>
 </html>            
