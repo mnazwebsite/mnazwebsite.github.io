@@ -170,9 +170,11 @@
                 <p class = "description" style = "display:none">Great for note taking and if you are thinking to replace your bulky notebook with versatile ipad.</p>
                 <p class = "description" style = "display:none"></p>
                 <p style = "font-size: 200%;">RM 100</p>
-        <div class = "icons">
+        <div class = "icons-expand">
             <i class="bi bi-arrows-expand fa-10x" style "color:black; background:white;" >Expand</i>
+        </div>
 		<!--i style = "background:white;display:none;float:right;" class="bi bi-arrows-collapse">Collapse</i-->
+        <div class = "icons" style = "display:none">
 		<a style = "color:green;background:white;display:none;border:none;text-decoration:none;font-size:75%" class="bi bi-whatsapp fa-5x" href = "https://www.google.com" target = "_blank">
 			 Order Now!
 		</a>
@@ -303,10 +305,14 @@
         }
 		x.style.width = "100%";
 		x.style.fontSize = "150%";
+        x.getElementsByClassName('icons')[0].style.display = 'block';
+        x.getElementsByClassName('icons-expland')[0].style.display = 'none';
+        /*
 		x.getElementsByClassName('bi bi-whatsapp')[0].style.display = 'block';
 		x.getElementsByClassName('bi bi-arrows-expand fa-10x')[0].style.display = 'none';
-		/*x.getElementsByClassName('bi bi-arrows-collapse')[0].style.display = 'inline-block';*/
+		x.getElementsByClassName('bi bi-arrows-collapse')[0].style.display = 'inline-block';
 		x.getElementsByClassName('carousell')[0].style.display = 'block';
+        */
 	}	
 	else{
 		list_of_p = x.getElementsByClassName('description')
@@ -315,10 +321,13 @@
         }
 		x.style.width = width_new;
 		x.style.fontSize = "100%";
+        x.getElementsByClassName('icons')[0].style.display = 'none';
+        x.getElementsByClassName('icons-expland')[0].style.display = 'block';
+        /*
 		x.getElementsByClassName('bi bi-whatsapp')[0].style.display = 'none';
 		x.getElementsByClassName('bi bi-arrows-expand fa-10x')[0].style.display = 'block';
-		/*x.getElementsByClassName('bi bi-arrows-collapse')[0].style.display = 'none';*/
-		x.getElementsByClassName('carousell')[0].style.display = 'none';
+		/*x.getElementsByClassName('bi bi-arrows-collapse')[0].style.display = 'none';
+		x.getElementsByClassName('carousell')[0].style.display = 'none';*/
 		for (let i = 0; i < all_div.length; i++)
 		{
 		all_div[i].style.display = "inline-block";
