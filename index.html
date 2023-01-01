@@ -297,7 +297,10 @@
 
 	on_or_of = x.getElementsByClassName('description')[0].style.display;
 	if	 (on_or_of == 'none'){
-		x.getElementsByClassName('description')[0].style.display = 'block';
+		list_of_p = x.getElementsByClassName('description')
+        for (var i = 0; i < list_of_p.length; i++){
+            list_of_p[i].style.display = 'block';
+        }
 		x.style.width = "100%";
 		x.style.fontSize = "150%";
 		x.getElementsByClassName('bi bi-whatsapp')[0].style.display = 'block';
@@ -306,7 +309,9 @@
 		x.getElementsByClassName('carousell')[0].style.display = 'block';
 	}	
 	else{
-		x.getElementsByClassName('description')[0].style.display = 'none';
+		list_of_p = x.getElementsByClassName('description')
+        for (var i = 0; i < list_of_p.length; i++){
+            list_of_p[i].style.display = 'none';
 		x.style.width = width_new;
 		x.style.fontSize = "100%";
 		x.getElementsByClassName('bi bi-whatsapp')[0].style.display = 'none';
