@@ -1,55 +1,61 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Pivot Table Example</title>
-    <script src="https://d3js.org/d3.v6.min.js"></script>
-    <style>
-        table {
-            border-collapse: collapse;
-            margin: 1em;
-        }
-
-        th, td {
-            border: 1px solid black;
-            padding: 0.5em;
-            text-align: left;
-        }
-    </style>
-</head>
-<body>
-    <div id="table-container"></div>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pivot Table Plotting in D3.js</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+  </head>
+  <body>
+    <div id="chart"></div>
     <script>
-        d3.csv("https://www.mnazwebsite.xyz/lazada_data.csv", d3.autoType).then(function(data) {
-            var table = d3.select("#table-container").append("table");
-            var thead = table.append("thead");
-            var tbody = table.append("tbody");
+      d3.csv("https://www.mnazwebsite.xyz/lazada_data.csv", d3.autoType).then(
+        (data) => {
+          const pivotData = d3.rollups(
+            data,
+            (v) => d3.sum(v, (d) => d.sales),
+            (d) => d.category,
+            (d) => d.brand
+          );
+          const categories = [...new Set(data.map((d) => d.category))];
+          const brands = [...new Set(data.map((d) => d.brand))];
 
-            // Extract unique values for rows and columns
-            var rowKeys = d3.set(data, function(d) { return d.Country; }).values();
-            var colKeys = d3.set(data, function(d) { return d.Category; }).values();
+          const margin = { top: 20, right: 20, bottom: 30, left: 50 };
+          const width = 800 - margin.left - margin.right;
+          const height = 500 - margin.top - margin.bottom;
 
-            // Create the first row with column headers
-            var firstRow = thead.append("tr");
-            firstRow.append("th").text("Country");
-            colKeys.forEach(function(colKey) {
-                firstRow.append("th").text(colKey);
-            });
+          const x = d3.scaleBand().range([0, width]).padding(0.1);
+          const y = d3.scaleLinear().range([height, 0]);
 
-            // Create the remaining rows with row headers
-            rowKeys.forEach(function(rowKey) {
-                var row = tbody.append("tr");
-                row.append("td").text(rowKey);
-                colKeys.forEach(function(colKey) {
-                    var value = d3.sum(data, function(d) {
-                        return (d.Country === rowKey && d.Category === colKey) ? d.Sales : 0;
-                    });
-                    row.append("td").text(value);
-                });
-            });
-        }).catch(function(error) {
-            console.log(error);
-        });
+          const svg = d3
+            .select("#chart")
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
+
+          x.domain(brands);
+          y.domain([0, d3.max(pivotData, (d) => d3.max(d[1]))]);
+
+          svg
+            .append("g")
+            .attr("transform", `translate(0,${height})`)
+            .call(d3.axisBottom(x));
+
+          svg.append("g").call(d3.axisLeft(y));
+
+          svg
+            .selectAll(".bar")
+            .data(pivotData)
+            .join("rect")
+            .attr("class", "bar")
+            .attr("x", (d) => x(d[0]))
+            .attr("y", (d) => y(d[1]))
+            .attr("width", x.bandwidth())
+            .attr("height", (d) => height - y(d[1]));
+        }
+      );
     </script>
-</body>
+  </body>
 </html>
