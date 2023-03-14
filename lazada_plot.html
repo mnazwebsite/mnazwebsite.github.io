@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Daily Sales Chart</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <script>
+        // Define margins
+        const margin = {top: 20, right: 20, bottom: 70, left: 50};
+        const width = 600 - margin.left - margin.right;
+        const height = 400 - margin.top - margin.bottom;
+
+        // Create SVG element
+        const svg = d3.select("body")
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        // Load data from csv file
+        d3.csv("https://mnazwebsite.github.io/lazada_data.csv", function(data) {
+            // Format data
+            const parseTime = d3.timeParse("%Y-%m-%d %H:%M:%S.%L");
+            data.forEach(function(d) {
+                d.Date = parseTime(d.Date);
+                d.count = +d.count;
+            });
+
+            // Create x scale
+            const x = d3.scaleTime()
+                .domain(d3.extent(data, function(d) { return d.Date; }))
+                .range([0, width]);
+
+            // Create y scale
+            const y = d3.scaleLinear()
+                .domain([0, d3.max(data, function(d) { return d.count; })])
+                .range([height, 0]);
+
+            // Create x axis
+            const xAxis = d3.axisBottom(x);
+
+            // Create y axis
+            const yAxis = d3.axisLeft(y);
+
+            // Add x axis
+            svg.append("g")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis);
+
+            // Add y axis
+            svg.append("g")
+                .call(yAxis);
+
+            // Add line
+            svg.append("path")
+                .datum(data)
+                .attr("fill", "none")
+                .attr("stroke", "steelblue")
+                .attr("stroke-width", 1.5)
+                .attr("d", d3.line()
+                    .x(function(d) { return x(d.Date) })
+                    .y(function(d) { return y(d.count) })
+                );
+        });
+    </script>
+</body>
+</html>
