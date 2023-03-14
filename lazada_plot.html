@@ -1,61 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Pivot Table Plotting in D3.js</title>
+    <title>D3.js Pivot Table Example</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
   </head>
   <body>
     <div id="chart"></div>
+
     <script>
-      d3.csv("https://www.mnazwebsite.xyz/lazada_data.csv", d3.autoType).then(
-        (data) => {
-          const pivotData = d3.rollups(
-            data,
-            (v) => d3.sum(v, (d) => d.sales),
-            (d) => d.category,
-            (d) => d.brand
-          );
-          const categories = [...new Set(data.map((d) => d.category))];
-          const brands = [...new Set(data.map((d) => d.brand))];
+      d3.csv(
+        "https://www.mnazwebsite.xyz/lazada_data.csv",
+        d3.autoType
+      ).then((data) => {
+        const margin = { top: 10, right: 10, bottom: 30, left: 60 };
+        const width = 800 - margin.left - margin.right;
+        const height = 400 - margin.top - margin.bottom;
 
-          const margin = { top: 20, right: 20, bottom: 30, left: 50 };
-          const width = 800 - margin.left - margin.right;
-          const height = 500 - margin.top - margin.bottom;
+        const svg = d3
+          .select("#chart")
+          .append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", `translate(${margin.left},${margin.top})`);
 
-          const x = d3.scaleBand().range([0, width]).padding(0.1);
-          const y = d3.scaleLinear().range([height, 0]);
+        const x = d3
+          .scaleBand()
+          .domain(data.map((d) => d.date))
+          .range([0, width])
+          .padding(0.1);
 
-          const svg = d3
-            .select("#chart")
-            .append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
-            .append("g")
-            .attr("transform", `translate(${margin.left},${margin.top})`);
+        const y = d3.scaleLinear().domain([0, 100]).range([height, 0]);
 
-          x.domain(brands);
-          y.domain([0, d3.max(pivotData, (d) => d3.max(d[1]))]);
+        svg
+          .append("g")
+          .attr("transform", `translate(0,${height})`)
+          .call(d3.axisBottom(x));
 
-          svg
-            .append("g")
-            .attr("transform", `translate(0,${height})`)
-            .call(d3.axisBottom(x));
+        svg.append("g").call(d3.axisLeft(y));
 
-          svg.append("g").call(d3.axisLeft(y));
-
-          svg
-            .selectAll(".bar")
-            .data(pivotData)
-            .join("rect")
-            .attr("class", "bar")
-            .attr("x", (d) => x(d[0]))
-            .attr("y", (d) => y(d[1]))
-            .attr("width", x.bandwidth())
-            .attr("height", (d) => height - y(d[1]));
-        }
-      );
+        svg
+          .selectAll("rect")
+          .data(data)
+          .enter()
+          .append("rect")
+          .attr("x", (d) => x(d.date))
+          .attr("y", (d) => y(d.sales))
+          .attr("width", x.bandwidth())
+          .attr("height", (d) => height - y(d.sales))
+          .attr("fill", "steelblue");
+      });
     </script>
   </body>
 </html>
