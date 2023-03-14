@@ -1,69 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Daily Sales Chart</title>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <meta charset="utf-8">
+    <title>Pivot Table Example</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 1em;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 0.5em;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
+    <div id="table-container"></div>
     <script>
-        // Define margins
-        const margin = {top: 20, right: 20, bottom: 70, left: 50};
-        const width = 600 - margin.left - margin.right;
-        const height = 400 - margin.top - margin.bottom;
+        d3.csv("https://www.mnazwebsite.xyz/lazada_data.csv", d3.autoType).then(function(data) {
+            var table = d3.select("#table-container").append("table");
+            var thead = table.append("thead");
+            var tbody = table.append("tbody");
 
-        // Create SVG element
-        const svg = d3.select("body")
-            .append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
-            .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+            // Extract unique values for rows and columns
+            var rowKeys = d3.set(data, function(d) { return d.Country; }).values();
+            var colKeys = d3.set(data, function(d) { return d.Category; }).values();
 
-        // Load data from csv file
-        d3.csv("https://www.mnazwebsite.xyz/lazada_data.csv", function(data) {
-            // Format data
-            const parseTime = d3.timeParse("%Y-%m-%d %H:%M:%S.%L");
-            data.forEach(function(d) {
-                d.Date = parseTime(d.Date);
-                d.count = +d.count;
+            // Create the first row with column headers
+            var firstRow = thead.append("tr");
+            firstRow.append("th").text("Country");
+            colKeys.forEach(function(colKey) {
+                firstRow.append("th").text(colKey);
             });
 
-            // Create x scale
-            const x = d3.scaleTime()
-                .domain(d3.extent(data, function(d) { return d.Date; }))
-                .range([0, width]);
-
-            // Create y scale
-            const y = d3.scaleLinear()
-                .domain([0, d3.max(data, function(d) { return d.count; })])
-                .range([height, 0]);
-
-            // Create x axis
-            const xAxis = d3.axisBottom(x);
-
-            // Create y axis
-            const yAxis = d3.axisLeft(y);
-
-            // Add x axis
-            svg.append("g")
-                .attr("transform", "translate(0," + height + ")")
-                .call(xAxis);
-
-            // Add y axis
-            svg.append("g")
-                .call(yAxis);
-
-            // Add line
-            svg.append("path")
-                .datum(data)
-                .attr("fill", "none")
-                .attr("stroke", "steelblue")
-                .attr("stroke-width", 1.5)
-                .attr("d", d3.line()
-                    .x(function(d) { return x(d.Date) })
-                    .y(function(d) { return y(d.count) })
-                );
+            // Create the remaining rows with row headers
+            rowKeys.forEach(function(rowKey) {
+                var row = tbody.append("tr");
+                row.append("td").text(rowKey);
+                colKeys.forEach(function(colKey) {
+                    var value = d3.sum(data, function(d) {
+                        return (d.Country === rowKey && d.Category === colKey) ? d.Sales : 0;
+                    });
+                    row.append("td").text(value);
+                });
+            });
+        }).catch(function(error) {
+            console.log(error);
         });
     </script>
 </body>
