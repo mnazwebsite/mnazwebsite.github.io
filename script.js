@@ -32,12 +32,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
     async function initializeCamera() {
         try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            const devices = await navigator.mediaDevices.enumerateDevices();
+            const videoDevices = devices.filter(device => device.kind === 'videoinput');
+            let userFacingCamera;
+    
+            for (const device of videoDevices) {
+                if (device.label.toLowerCase().includes('front')) {
+                    userFacingCamera = device.deviceId;
+                    break;
+                }
+            }
+    
+            const constraints = {
+                video: {
+                    deviceId: userFacingCamera ? { exact: userFacingCamera } : undefined
+                }
+            };
+    
+            const stream = await navigator.mediaDevices.getUserMedia(constraints);
             video.srcObject = stream;
         } catch (err) {
             alert("Error accessing camera: " + err.message);
         }
     }
+    
 
 function captureImage() {
     if (capturedImages >= 8) {
