@@ -32,20 +32,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     async function initializeCamera() {
         try {
-            const devices = await navigator.mediaDevices.enumerateDevices();
-            const videoDevices = devices.filter(device => device.kind === 'videoinput');
-            let userFacingCamera;
-    
-            for (const device of videoDevices) {
-                if (device.label.toLowerCase().includes('front')) {
-                    userFacingCamera = device.deviceId;
-                    break;
-                }
-            }
-    
             const constraints = {
                 video: {
-                    deviceId: userFacingCamera ? { exact: userFacingCamera } : undefined
+                    facingMode: "user"
                 }
             };
     
