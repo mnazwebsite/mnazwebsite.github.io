@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles_finance.css">
+  <title>Arif's Page</title>
+</head>
+<body>
+
+  <header>
+    <img style = "width:70px;" src="image/MNAZ.gif" alt="MNAZ Web">
+    <button id="darkModeToggle">Toggle Dark Mode</button>
+  </header>
+
+  <div class="container">
+    <div class="half">
+      <h2>News</h2>
+      <button id="newsDropdownToggle">Show News</button>
+      <a href = "https://www.investing.com/currencies/usd-jpy-news" target = "_blank">Scraped From Investing.com </a>
+      <ul id="newsList" class="hidden">
+          
+<li style = 'font-weight: bold;'>Wall Street ends volatile week higher as Fed officials ease bank fears<ul><li style = 'font-size: smaller;font-style: italic;'>Positive</li></ul></li>
+<li style = 'font-weight: bold;'>Banks wobble again, Hindenburg hits Block, Eurozone PMIs - what's moving markets<ul><li style = 'font-size: smaller;font-style: italic;'>Negative.</li></ul></li>
+<li style = 'font-weight: bold;'>Deutsche Bank tumbles as nervous investors seek safer shores<ul><li style = 'font-size: smaller;font-style: italic;'>Negative</li></ul></li>
+<li style = 'font-weight: bold;'>Gold not far from $2,000 in 4th weekly rise; Banking crisis boosts safe havens<ul><li style = 'font-size: smaller;font-style: italic;'>Neutral</li></ul></li>
+<li style = 'font-weight: bold;'>Asia FX weakens as dollar steadies from Fed-driven losses<ul><li style = 'font-size: smaller;font-style: italic;'>Neutral</li></ul></li>
+<li style = 'font-weight: bold;'>Dollar steadies near seven-week low; Fed set to pause?<ul><li style = 'font-size: smaller;font-style: italic;'>Neutral</li></ul></li>
+<li style = 'font-weight: bold;'>Japan CPI inflation dips from over 40-year highs in Feb<ul><li style = 'font-size: smaller;font-style: italic;'>Neutral</li></ul></li>
+<li style = 'font-weight: bold;'>Asia FX surges, dollar sinks on Fed’s ‘dovish hike’<ul><li style = 'font-size: smaller;font-style: italic;'>Negative</li></ul></li>
+<li style = 'font-weight: bold;'>Dollar slumps after Fed meeting; Sterling rises ahead of BOE<ul><li style = 'font-size: smaller;font-style: italic;'>Negative</li></ul></li>
+<li style = 'font-weight: bold;'>Asia FX creeps lower, dollar muted as markets brace for Fed rate hike<ul><li style = 'font-size: smaller;font-style: italic;'>Neutral</li></ul></li>
+<li style = 'font-weight: bold;'>Dollar subdued ahead of Fed decision; sterling rise on CPI jump<ul><li style = 'font-size: smaller;font-style: italic;'>Neutral</li></ul></li>
+<li style = 'font-weight: bold;'>Dollar edges higher, off lows ahead of Federal Reserve meeting<ul><li style = 'font-size: smaller;font-style: italic;'>The sentiment of the text is cautiously optimistic.</li></ul></li>
+<li style = 'font-weight: bold;'>Asia FX dips, dollar steadies as Fed meeting looms<ul><li style = 'font-size: smaller;font-style: italic;'>Neutral</li></ul></li>
+      </ul>
+    </div>
+    <div class="half">
+      <h2>Sentiments</h2>
+      <button id="sentimentsDropdownToggle">Show Sentiments</button>
+      <ul id="sentimentsList" class="hidden">
+          
+    <p style = 'font-weight:bold;'>ChatGPT SENTIMENTS</p>
+    <ul>
+        <li style = 'font-size: smaller;font-style: italic;'>
+            Positive: 2
+        </li>
+        <li style = 'font-size: smaller;font-style: italic;'>
+            Negative: 4
+        </li>
+        <li style = 'font-size: smaller;font-style: italic;'>
+            Neutral: 7
+        </li>
+    </ul>
+    <p style = 'font-weight:bold;'>VADER SENTIMENTS</p>
+    <ul>
+        <li style = 'font-size: smaller;font-style: italic;'>
+            Positive: 15%
+        </li>
+        <li style = 'font-size: smaller;font-style: italic;'>
+            Negative: 53%
+        </li>
+        <li style = 'font-size: smaller;font-style: italic;'>
+            Neutral: 30%
+        </li>
+    </ul>
+    <p style = 'font-weight:bold;'>BAYES CLASS</p>
+    <ul>
+        <li style = 'font-size: smaller;font-style: italic;'>
+            SELL
+        </li>
+    
+        </li>
+    </ul>
+
+      </ul>
+    </div>
+    <div class="full">
+      <h2>Graph</h2>
+      <img src="graph.png" alt="Your Graph">
+    </div>
+  </div>
+
+  <footer>
+    &copy; Arif, All Rights Reserved
+  </footer>
+
+  <script src="scripts_finance.js"></script>
+</body>
+</html>
